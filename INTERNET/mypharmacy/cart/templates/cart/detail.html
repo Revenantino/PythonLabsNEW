@@ -1,0 +1,45 @@
+{% block title %}
+Ваша корзина товаров
+{% endblock %}
+{% block content %}
+<h1>Ваша корзина товаров</h1>
+<table class="cart">
+    <thead>
+    <tr>
+        <th>Изображение</th>
+        <th>Продукт</th>
+        <th>Количество</th>
+        <th>Удалить</th>
+        <th>Полная цена</th>
+        <th>Цена</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in cart %}
+    {% with medicine=item.medicine%}
+    <tr>
+        <td>
+            <a href="{{ medicine.get_absolute_url }}">
+                <img src="{{ medicine.image.url }}" alt="" />
+            </a>
+        </td>
+        <td>{{ medicine.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td><a href="{% url "cart:CartRemove" medicine.id %}">Удалить</a></td>
+        <td class="num">{{ item.price }} руб.</td>
+        <td class="num">{{ item.total_price }} руб.</td>
+    </tr>
+    {% endwith %}
+    {% endfor %}
+    <tr class="total">
+        <td>Total</td>
+        <td colspan="4"></td>
+        <td class="num">{{ cart.get_total_price }} руб.</td>
+    </tr>
+    </tbody>
+</table>
+<p class="text-right">
+    <a href="{% url "pharmacy:medicines_list"%}" class="btn">Продолжить Шопинг</a>
+    <a href="#">Оформить заказ</a>
+</p>
+{% endblock %}

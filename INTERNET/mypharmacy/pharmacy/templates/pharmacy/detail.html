@@ -1,0 +1,33 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+body {font-family: "Times New Roman", Georgia, Serif;}
+h1,h2,h3,h4,h5,h6 {
+    font-family: "Playfair Display";
+    letter-spacing: 5px;
+}
+</style>
+<div class="w3-top">
+    <div class="w3-right w3-hide-small">
+        <a href="http://127.0.0.1:8000/" class="w3-bar-item w3-button">ГОЛОВНА</a>
+        <a href="http://127.0.0.1:8000/cart/" class="w3-bar-item w3-button">КОРЗИНА</a>
+    </div>
+</div>
+<h5><b>{{ medicine.name}}</b></h5>
+<li><b>Вміст:</b>{{ medicine.content}}</li>
+<li><b>Виробник:</b> {{ medicine.manufacturer_name }}</li>
+<li><b>Показання для застосування:</b> {{ medicine.indications_for_use }}</li>
+<li><b>Протипоказання:</b> {{ medicine.contraindications }}</li>
+<li><b>Застосування та дози:</b> {{ medicine.application_and_dose }}</li>
+<li><b>Термін придатності:</b> {{ medicine.term  }}</li>
+<li><b>Умови зберігання:</b> {{ medicine.storage}}</li>
+<li><b>Наявна кількість:</b> {{ medicine.available_quantity }}</li>
+<li><b>Ціна на даний продук:</b> {{ medicine.price}} гривень</li>
+<img src="{{medicine.img.url}}" width="240">
+<form action = "% url "cart:CartAdd" medicine.id%" method="post">
+    {{cart_medicine_form}}
+    {% csrf_token %}
+    <input type = "submit" value="Додати в корзину">
+</form>
+</ul>
